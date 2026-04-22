@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/migrations/001_init.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/002_indexes.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/queries/q1_top_users.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/queries/q2_products_sales.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/queries/q3_orders_with_items.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/queries/q4_conversion.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/queries/q5_suspicious.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/queries/q6_keyset_pagination.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/queries/q6_offset_pagination.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/seed/seed.php" dialect="GenericSQL" />
+    <file url="PROJECT" dialect="PostgreSQL" />
+  </component>
+</project>

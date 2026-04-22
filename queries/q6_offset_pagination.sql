@@ -1,0 +1,20 @@
+EXPLAIN ANALYZE
+SELECT *
+FROM orders
+WHERE user_id = 1
+ORDER BY created_at DESC
+LIMIT 20 OFFSET 0;
+
+
+SELECT *
+FROM orders
+WHERE user_id = 1
+ORDER BY created_at DESC
+LIMIT 20 OFFSET 9980;
+
+
+SELECT *
+FROM orders
+WHERE user_id = 1
+ORDER BY created_at DESC
+LIMIT 20 OFFSET 39980;

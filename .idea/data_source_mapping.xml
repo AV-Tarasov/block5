@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/migrations/001_init.sql" value="f8f5402d-d0e8-4207-8dd3-f95a21e9db66" />
+    <file url="file://$PROJECT_DIR$/migrations/002_indexes.sql" value="f8f5402d-d0e8-4207-8dd3-f95a21e9db66" />
+    <file url="file://$PROJECT_DIR$/queries/q1_top_users.sql" value="f8f5402d-d0e8-4207-8dd3-f95a21e9db66" />
+    <file url="file://$PROJECT_DIR$/queries/q2_products_sales.sql" value="f8f5402d-d0e8-4207-8dd3-f95a21e9db66" />
+    <file url="file://$PROJECT_DIR$/queries/q3_orders_with_items.sql" value="f8f5402d-d0e8-4207-8dd3-f95a21e9db66" />
+    <file url="file://$PROJECT_DIR$/queries/q4_conversion.sql" value="f8f5402d-d0e8-4207-8dd3-f95a21e9db66" />
+    <file url="file://$PROJECT_DIR$/queries/q5_suspicious.sql" value="f8f5402d-d0e8-4207-8dd3-f95a21e9db66" />
+    <file url="file://$PROJECT_DIR$/queries/q6_keyset_pagination.sql" value="f8f5402d-d0e8-4207-8dd3-f95a21e9db66" />
+    <file url="file://$PROJECT_DIR$/queries/q6_offset_pagination.sql" value="f8f5402d-d0e8-4207-8dd3-f95a21e9db66" />
+  </component>
+</project>

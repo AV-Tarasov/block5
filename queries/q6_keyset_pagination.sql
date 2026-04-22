@@ -1,0 +1,22 @@
+EXPLAIN ANALYZE
+SELECT *
+FROM orders
+WHERE user_id = 1
+ORDER BY id DESC
+LIMIT 20;
+
+
+SELECT *
+FROM orders
+WHERE user_id = 1
+  AND id < 98000
+ORDER BY id DESC
+LIMIT 20;
+
+
+SELECT *
+FROM orders
+WHERE user_id = 1
+  AND id < 97980
+ORDER BY id DESC
+LIMIT 20;
