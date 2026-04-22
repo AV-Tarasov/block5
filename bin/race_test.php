@@ -8,20 +8,21 @@ if (!$orderId) {
 }
 
 $processes = 10;
-$commands = [];
 
 echo "Starting race test for order {$orderId}\n";
 
 for ($i = 0; $i < $processes; $i++) {
-    $commands[] = "php bin/pay_order.php {$orderId}";
+    exec("php bin/pay_order.php {$orderId} > /tmp/pay_test_{$i}.log 2>&1 &");
 }
 
-foreach ($commands as $cmd) {
-    pclose(popen($cmd, 'r'));
+echo "Processes started. Waiting...\n";
+
+sleep(2);
+
+// показываем результаты
+for ($i = 0; $i < $processes; $i++) {
+    echo "---- Process {$i} ----\n";
+    echo file_get_contents("/tmp/pay_test_{$i}.log");
 }
 
-echo "All processes started...\n";
-
-sleep(3);
-
-echo "Check results in DB\n";
+echo "Race test completed\n";

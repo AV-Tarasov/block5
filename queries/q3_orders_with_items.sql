@@ -1,10 +1,8 @@
-SELECT orders.id, orders.user_id, orders.status, orders.created_at
+SELECT *
 FROM orders
-ORDER BY orders.created_at DESC
+ORDER BY created_at DESC
 LIMIT 100;
 
-
-SELECT order_items.order_id, order_items.product_id, products.title, order_items.qty, order_items.price
+SELECT *
 FROM order_items
-         JOIN products ON products.id = order_items.product_id
-WHERE order_items.order_id IN ('id');
+WHERE order_id = ANY (:order_ids);

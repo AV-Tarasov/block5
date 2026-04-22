@@ -1,13 +1,9 @@
-SELECT COUNT(*) FILTER (WHERE p.status = 'paid') AS paid_orders,
-       COUNT(*)                                  AS total_orders,
+SELECT COUNT(*) FILTER (WHERE orders.status = 'paid') AS paid_orders,
+       COUNT(*)                                       AS total_orders,
        ROUND(
-               CASE
-                   WHEN COUNT(*) = 0 THEN 0
-                   ELSE COUNT(*) FILTER (WHERE p.status = 'paid')::numeric
-                            / COUNT(*) * 100
-                   END,
+               COUNT(*) FILTER (WHERE orders.status = 'paid')::numeric
+                   / NULLIF(COUNT(*), 0) * 100,
                2
-       )                                         AS conversion_percent
-FROM orders o
-         JOIN payments p ON p.order_id = o.id
-WHERE o.created_at BETWEEN to_timestamp(:date_from) AND to_timestamp(:date_to);
+       )                                              AS conversion_percent
+FROM orders
+WHERE orders.created_at BETWEEN :date_from AND :date_to;

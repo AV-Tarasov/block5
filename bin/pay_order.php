@@ -26,6 +26,7 @@ try {
         FOR UPDATE
     ");
     $stmt->execute(['id' => $orderId]);
+
     $order = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$order) {
@@ -37,16 +38,22 @@ try {
     }
 
     $stmt = $pdo->prepare("
-        UPDATE payments 
-        SET status = 'paid'
-        WHERE order_id = :order_id
+        INSERT INTO payments (order_id, status, provider, created_at)
+        VALUES (:order_id, 'paid', 'system', NOW())
+        RETURNING id, status
     ");
     $stmt->execute(['order_id' => $orderId]);
+    $payment = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$payment || $payment['status'] !== 'paid') {
+        throw new Exception("Payment failed, order not updated");
+    }
 
     $stmt = $pdo->prepare("
         UPDATE orders 
         SET status = 'paid'
         WHERE id = :id
+        AND status = 'new'
     ");
     $stmt->execute(['id' => $orderId]);
 
@@ -54,9 +61,13 @@ try {
         INSERT INTO audit_log (entity_type, entity_id, action, meta, created_at)
         VALUES ('order', :id, 'paid', :meta, NOW())
     ");
+
     $stmt->execute([
         'id' => $orderId,
-        'meta' => json_encode(['source' => 'pay_order.php'])
+        'meta' => json_encode([
+            'source' => 'pay_order.php',
+            'payment_id' => $payment['id']
+        ])
     ]);
 
     $pdo->commit();
@@ -65,7 +76,7 @@ try {
 
 } catch (Exception $e) {
 
-    if ($pdo->inTransaction()) {
+    if (isset($pdo) && $pdo->inTransaction()) {
         $pdo->rollBack();
     }
 

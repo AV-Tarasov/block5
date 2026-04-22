@@ -1,9 +1,8 @@
-SELECT users.name, SUM(orders.total_amount) AS total_amount
-FROM orders
-         JOIN users ON users.id = orders.user_id
-         JOIN payments ON payments.order_id = orders.id
-WHERE payments.status = 'paid'
+SELECT users.id, users.email, SUM(orders.total_amount) AS total_amount
+FROM users
+         JOIN orders ON orders.user_id = users.id
+WHERE orders.status = 'paid'
   AND orders.created_at >= NOW() - INTERVAL '30 days'
-GROUP BY users.name
+GROUP BY users.id, users.email
 ORDER BY total_amount DESC
-LIMIT 20
+LIMIT 20;
